@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b" />
+      <stop offset="100%" stop-color="#022c22" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#grad)"/>
+  <circle cx="256" cy="240" r="180" fill="#047857" opacity="0.3"/>
+  <g transform="translate(110, 95) scale(6.5)" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Sprout / Plant -->
+    <path d="M7 20h10" stroke="#34d399"/>
+    <path d="M10 20c0-5.5 2.5-10 7-10" stroke="#34d399"/>
+    <path d="M17 10c0-4.4-3.6-8-8-8s-8 3.6-8 8a8 8 0 0 0 6 7.7" stroke="#34d399"/>
+    <!-- Camera Eye / Surveillance -->
+    <circle cx="34" cy="14" r="7" stroke="#38bdf8" stroke-width="1.8"/>
+    <circle cx="34" cy="14" r="2.5" fill="#38bdf8"/>
+    <path d="M26 14a11 11 0 0 1 16 0" stroke="#38bdf8" stroke-dasharray="2 2"/>
+    <path d="M28 28l5-8h10l3 8" stroke="#38bdf8"/>
+  </g>
+  <text x="256" y="440" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="900" fill="#ecfdf5" text-anchor="middle" letter-spacing="4">AGRISMART</text>
+</svg>

@@ -1,0 +1,2 @@
+# Place trained Ultralytics YOLO weights here as best.pt
+# Until then, the API uses a labelled DEMO HSV heuristic.

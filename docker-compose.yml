@@ -1,0 +1,54 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: agri_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-agri_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-agri_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-agriculture}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - agri_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-agri_user} -d ${POSTGRES_DB:-agriculture}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+    container_name: agri_backend
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-agri_user}:${POSTGRES_PASSWORD:-agri_pass}@db:5432/${POSTGRES_DB:-agriculture}
+      POSTGRES_HOST: db
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./vision/weights:/app/vision/weights
+      - ./ml/artifacts:/app/ml/artifacts
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend.Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000}
+    container_name: agri_frontend
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  agri_pgdata:

@@ -1,0 +1,4 @@
+crop,period_date,demand_kg,price_inr
+Tomato,2024-01-01,7200,21.5
+Tomato,2024-02-01,7400,22.1
+# DEMO DATA sample — full series is generated in PostgreSQL seed

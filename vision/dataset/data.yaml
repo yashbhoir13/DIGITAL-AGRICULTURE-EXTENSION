@@ -1,0 +1,6 @@
+# DEMO placeholder — replace with real YOLO dataset paths.
+path: .
+train: images/train
+val: images/val
+names:
+  0: strawberry
